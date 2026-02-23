@@ -1,5 +1,5 @@
 {
-  "name": "internet-search",
+  "name": "@jzakirov/internet-search",
   "version": "0.2.0",
   "type": "module",
   "description": "SearXNG-backed internet search plugin for OpenClaw",

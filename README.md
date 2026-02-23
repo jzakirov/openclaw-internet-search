@@ -7,7 +7,7 @@ Registers a single `internet-search` tool with category routing for general, new
 ## Installation
 
 ```bash
-openclaw plugins install internet-search
+openclaw plugins install @jzakirov/internet-search
 ```
 
 Or from a local path (development):
