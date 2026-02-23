@@ -1,6 +1,6 @@
 {
   "id": "internet-search",
-  "kind": "tools",
+  "kind": "web-search",
   "name": "Internet Search",
   "description": "Web search via SearXNG. Registers the internet-search tool.",
   "version": "0.1.0",

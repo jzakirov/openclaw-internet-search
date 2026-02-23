@@ -1,0 +1,6 @@
+.gitignore
+.git
+*.tgz
+*.skill
+node_modules
+dist
