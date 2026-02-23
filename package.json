@@ -1,6 +1,6 @@
 {
   "name": "@jzakirov/internet-search",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "description": "SearXNG-backed internet search plugin for OpenClaw",
   "license": "MIT",
