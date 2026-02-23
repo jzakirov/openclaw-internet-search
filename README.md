@@ -2,7 +2,7 @@
 
 Web search for [OpenClaw](https://openclaw.dev) agents, backed by a self-hosted [SearXNG](https://searxng.github.io/searxng/) instance.
 
-Registers a single `internet-search` tool with category routing for general, news, academic, and social results.
+Registers a single `internet_search` tool with category routing for general, news, academic, and social results.
 
 ## Installation
 
@@ -61,12 +61,12 @@ To use this plugin as the sole web search (disabling the default Brave/Perplexit
 }
 ```
 
-If you only want to add `internet-search` alongside the built-in tool (rather than replace it), omit the `tools.web.search.enabled` change.
+If you only want to add `internet_search` alongside the built-in tool (rather than replace it), omit the `tools.web.search.enabled` change.
 
-## Tool: `internet-search`
+## Tool: `internet_search`
 
 ```
-internet-search(query, count?, category?)
+internet_search(query, count?, category?)
 ```
 
 | Parameter  | Type   | Default   | Description                                      |

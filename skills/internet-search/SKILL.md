@@ -1,6 +1,6 @@
 ---
 name: internet-search
-description: "How to use the internet-search tool effectively — category routing, query formulation, and multi-search strategies. Use whenever web search is needed: current events, research papers, community opinions, or any information beyond training knowledge."
+description: "How to use the internet_search tool effectively — category routing, query formulation, and multi-search strategies. Use whenever web search is needed: current events, research papers, community opinions, or any information beyond training knowledge."
 ---
 
 # Internet Search
@@ -46,19 +46,19 @@ Fire multiple focused searches rather than one broad one:
 
 ```
 # Bad: one vague search
-internet-search("best way to deploy Node.js")
+internet_search("best way to deploy Node.js")
 
 # Good: three targeted searches
-internet-search("Node.js Docker deployment best practices 2025")
-internet-search("Node.js PM2 vs Docker production", category="social")
-internet-search("Node.js zero-downtime deployment strategies")
+internet_search("Node.js Docker deployment best practices 2025")
+internet_search("Node.js PM2 vs Docker production", category="social")
+internet_search("Node.js zero-downtime deployment strategies")
 ```
 
 Combine `general` + `social` for factual + sentiment coverage:
 
 ```
-internet-search("Bun runtime performance vs Node.js benchmarks")
-internet-search("Bun runtime production experience", category="social")
+internet_search("Bun runtime performance vs Node.js benchmarks")
+internet_search("Bun runtime production experience", category="social")
 ```
 
 ## When NOT to Use

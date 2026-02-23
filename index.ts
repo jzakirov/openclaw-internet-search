@@ -19,7 +19,7 @@ const CATEGORY_ROUTING: Record<string, { categories?: string; engines?: string }
 
 export default function (api: any) {
   api.registerTool({
-    name: "internet-search",
+    name: "internet_search",
     description:
       "Search the web using a SearXNG instance. Use this to gather news and learn new information. " +
       "Use category='news' for recent events, 'academic' for research papers, 'social' for opinions/discussions.",
