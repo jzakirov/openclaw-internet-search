@@ -41,11 +41,11 @@ export default function (api: any) {
       required: ["query"]
     },
     async execute(_id: string, params: any, signal: AbortSignal) {
-      const baseUrl = String(api.config?.searxngUrl ?? "").trim();
+      const baseUrl = String(api.pluginConfig?.searxngUrl ?? "").trim();
       if (!baseUrl) {
         throw new Error("searxngUrl is required in the internet-search plugin config");
       }
-      const token = String(api.config?.searxngToken ?? "").trim();
+      const token = String(api.pluginConfig?.searxngToken ?? "").trim();
 
       const q = String(params.query ?? "").trim();
       const count = Math.min(10, Math.max(1, Number(params.count ?? 5)));
