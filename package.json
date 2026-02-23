@@ -1,12 +1,12 @@
 {
   "name": "@jzakirov/internet-search",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "description": "SearXNG-backed internet search plugin for OpenClaw",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jzakirov/openclaw-internet-search.git"
+    "url": "git+https://github.com/jzakirov/openclaw-internet-search.git"
   },
   "keywords": ["openclaw", "openclaw-plugin", "searxng", "search", "internet-search", "web-search"],
   "files": ["index.ts", "openclaw.plugin.json", "skills", "README.md", "LICENSE"],
