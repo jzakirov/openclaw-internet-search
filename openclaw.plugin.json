@@ -1,0 +1,20 @@
+{
+  "id": "internet-search",
+  "kind": "tools",
+  "name": "Internet Search",
+  "description": "Web search via SearXNG. Registers the internet-search tool.",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "searxngUrl": { "type": "string" },
+      "searxngToken": { "type": "string" }
+    },
+    "required": ["searxngUrl"]
+  },
+  "uiHints": {
+    "searxngUrl": { "label": "SearXNG URL", "placeholder": "https://search.example.com/" },
+    "searxngToken": { "label": "SearXNG Token", "sensitive": true }
+  }
+}

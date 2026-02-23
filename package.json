@@ -1,0 +1,13 @@
+{
+  "name": "openclaw-internet-search",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "SearXNG-backed internet search plugin for OpenClaw",
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": ">=2025.0.0"
+  },
+  "openclaw": {
+    "extensions": ["./index.ts"]
+  }
+}
