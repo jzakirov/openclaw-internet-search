@@ -3,7 +3,7 @@
   "kind": "web-search",
   "name": "Internet Search",
   "description": "Web search via SearXNG. Registers the internet_search tool.",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "configSchema": {
     "type": "object",
     "additionalProperties": false,

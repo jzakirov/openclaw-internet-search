@@ -17,6 +17,19 @@ const CATEGORY_ROUTING: Record<string, { categories?: string; engines?: string }
   social:   { engines: "reddit" },
 };
 
+async function runSearch(baseUrl: string, token: string, q: string, routing: { categories?: string; engines?: string }, signal: AbortSignal) {
+  const url = new URL("/search", baseUrl);
+  url.searchParams.set("q", q);
+  url.searchParams.set("format", "json");
+  if (token) url.searchParams.set("token", token);
+  if (routing.categories) url.searchParams.set("categories", routing.categories);
+  if (routing.engines) url.searchParams.set("engines", routing.engines);
+
+  const res = await fetch(url.toString(), { signal });
+  if (!res.ok) throw new Error(`SearXNG HTTP ${res.status}`);
+  return res.json();
+}
+
 export default function (api: any) {
   api.registerTool({
     name: "internet_search",
@@ -52,18 +65,15 @@ export default function (api: any) {
       const category = String(params.category ?? "general").trim();
       const routing = CATEGORY_ROUTING[category] ?? {};
 
-      const url = new URL("/search", baseUrl);
-      url.searchParams.set("q", q);
-      url.searchParams.set("format", "json");
-      if (token) url.searchParams.set("token", token);
-      if (routing.categories) url.searchParams.set("categories", routing.categories);
-      if (routing.engines)    url.searchParams.set("engines", routing.engines);
+      let data: any = await runSearch(baseUrl, token, q, routing, signal);
+      let results = Array.isArray(data?.results) ? data.results : [];
 
-      const res = await fetch(url.toString(), { signal });
-      if (!res.ok) throw new Error(`SearXNG HTTP ${res.status}`);
-
-      const data: any = await res.json();
-      const results = Array.isArray(data?.results) ? data.results : [];
+      // Some SearXNG setups index broad search under `web` and return empty for implicit/general requests.
+      // Keep default behavior first, then fallback only when general produced zero results.
+      if (category === "general" && results.length === 0) {
+        data = await runSearch(baseUrl, token, q, { categories: "web" }, signal);
+        results = Array.isArray(data?.results) ? data.results : [];
+      }
       const mapped = results.slice(0, count).map((r: any) => ({
         title: String(r?.title ?? "").trim(),
         url: String(r?.url ?? "").trim(),
