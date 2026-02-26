@@ -17,7 +17,32 @@ const CATEGORY_ROUTING: Record<string, { categories?: string; engines?: string }
   social:   { engines: "reddit" },
 };
 
-async function runSearch(baseUrl: string, token: string, q: string, routing: { categories?: string; engines?: string }, signal: AbortSignal) {
+type Routing = { categories?: string; engines?: string };
+let cachedGeneralRouting: Routing | null = null;
+
+async function resolveGeneralRouting(baseUrl: string, token: string, signal: AbortSignal): Promise<Routing> {
+  if (cachedGeneralRouting) return cachedGeneralRouting;
+
+  try {
+    const configUrl = new URL("/config", baseUrl);
+    if (token) configUrl.searchParams.set("token", token);
+    const res = await fetch(configUrl.toString(), { signal });
+    if (!res.ok) return {};
+
+    const cfg: any = await res.json();
+    const engines = Array.isArray(cfg?.engines) ? cfg.engines : [];
+    const enabled = engines.filter((e: any) => e?.enabled === true);
+    const generalEnabled = enabled.filter((e: any) => Array.isArray(e?.categories) && e.categories.includes("general")).length;
+    const webEnabled = enabled.filter((e: any) => Array.isArray(e?.categories) && e.categories.includes("web")).length;
+
+    cachedGeneralRouting = generalEnabled > 0 ? {} : (webEnabled > 0 ? { categories: "web" } : {});
+    return cachedGeneralRouting;
+  } catch {
+    return {};
+  }
+}
+
+async function runSearch(baseUrl: string, token: string, q: string, routing: Routing, signal: AbortSignal) {
   const url = new URL("/search", baseUrl);
   url.searchParams.set("q", q);
   url.searchParams.set("format", "json");
@@ -63,17 +88,12 @@ export default function (api: any) {
       const q = String(params.query ?? "").trim();
       const count = Math.min(10, Math.max(1, Number(params.count ?? 5)));
       const category = String(params.category ?? "general").trim();
-      const routing = CATEGORY_ROUTING[category] ?? {};
+      const routing = category === "general"
+        ? await resolveGeneralRouting(baseUrl, token, signal)
+        : (CATEGORY_ROUTING[category] ?? {});
 
-      let data: any = await runSearch(baseUrl, token, q, routing, signal);
-      let results = Array.isArray(data?.results) ? data.results : [];
-
-      // Some SearXNG setups index broad search under `web` and return empty for implicit/general requests.
-      // Keep default behavior first, then fallback only when general produced zero results.
-      if (category === "general" && results.length === 0) {
-        data = await runSearch(baseUrl, token, q, { categories: "web" }, signal);
-        results = Array.isArray(data?.results) ? data.results : [];
-      }
+      const data: any = await runSearch(baseUrl, token, q, routing, signal);
+      const results = Array.isArray(data?.results) ? data.results : [];
       const mapped = results.slice(0, count).map((r: any) => ({
         title: String(r?.title ?? "").trim(),
         url: String(r?.url ?? "").trim(),

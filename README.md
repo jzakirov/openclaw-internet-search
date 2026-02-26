@@ -79,7 +79,7 @@ internet_search(query, count?, category?)
 
 | Value      | Routes to                      |
 |------------|--------------------------------|
-| `general`  | All configured SearXNG engines (with automatic fallback to `categories=web` if the first pass returns 0 results) |
+| `general`  | All configured SearXNG engines (auto-detects `general` vs `web` based on `/config`) |
 | `news`     | SearXNG news category          |
 | `academic` | arXiv, Google Scholar, PubMed  |
 | `social`   | Reddit                         |
