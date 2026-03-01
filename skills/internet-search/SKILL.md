@@ -17,6 +17,7 @@ Always set `category` based on the nature of the query.
 | `news`     | Recent events, breaking news, anything time-sensitive.              | Bing News, DDG News                              |
 | `academic` | Research papers, studies, medical literature, preprints.            | arXiv, Google Scholar, PubMed                    |
 | `social`   | Opinions, community recommendations, "what do people think about X".| Reddit                                           |
+| `image`    | Images e.t.c.                                                       | Bing Images |
 
 ## Query Formulation
 
