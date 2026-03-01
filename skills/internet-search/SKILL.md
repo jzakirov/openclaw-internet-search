@@ -17,7 +17,6 @@ Always set `category` based on the nature of the query.
 | `news`     | Recent events, breaking news, anything time-sensitive.              | Bing News, DDG News                              |
 | `academic` | Research papers, studies, medical literature, preprints.            | arXiv, Google Scholar, PubMed                    |
 | `social`   | Opinions, community recommendations, "what do people think about X".| Reddit                                           |
-| `image`    | Images e.t.c.                                                       | Bing Images |
 
 ## Query Formulation
 
@@ -34,6 +33,16 @@ Write queries as a search engine expects — keywords, not full sentences:
 - **news**: include a time anchor — `"OpenAI o3 release 2025"` not just `"OpenAI o3"`
 - **academic**: use field terminology — `"transformer attention efficiency survey"`
 - **social**: phrase as community search — `"reddit best mechanical keyboard 2025"`
+
+## SearXNG Search Syntax (in `query`)
+
+SearXNG supports lightweight query modifiers you can embed directly into the `query` string:
+
+| Syntax | Meaning | Examples |
+|--------|---------|----------|
+| `!<engine>` / `!<category>` | Select engine(s) and/or a category. Chainable and inclusive; abbreviations are accepted. | `!wp paris`, `!wikipedia paris`, `!map paris`, `!map !ddg !wp paris` |
+| `:<lang>` | Language filter | `:fr !wp Wau Holland` |
+
 
 ## Count
 
