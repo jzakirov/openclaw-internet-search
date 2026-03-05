@@ -1,13 +1,10 @@
 ---
 name: internet-search
-description: "How to use the internet_search tool effectively — category routing, query formulation, and multi-search strategies. Use whenever web search is needed: current events, research papers, community opinions, or any information beyond training knowledge."
+version: 0.3.8
+description: "Web search with category routing (general, news, academic, social). Use when searching for current events, research, or community opinions beyond training knowledge."
 metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "🔍"
-      }
-  }
+  "openclaw":
+    "emoji": "🔍"
 ---
 
 # Internet Search
