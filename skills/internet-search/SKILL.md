@@ -1,6 +1,6 @@
 ---
 name: internet-search
-version: 0.3.8
+version: 0.3.9
 description: "Web search with category routing (general, news, academic, social). Use when searching for current events, research, or community opinions beyond training knowledge."
 metadata:
   "openclaw":
